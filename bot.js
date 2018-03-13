@@ -15,14 +15,13 @@ client.on('message', message => {
   if (message.author != client.user || !message.content.startsWith(prefix)) return
 
   //trimming first character of command to find the command name ie ;test -> test .
-  let command = message.content.split()[0]
+  let command = message.content.split(' ')[0]
   command = command.substring(1)
-
   //running exports.run from the commands. if command doesnt exist, the catch block will handle it.
   try {
     //arguments would be terms after the command. Passed into loadCommand.run() as an array.
     let args = message.content.split(' ')
-    args.unshift()
+    args.shift()
 
     let loadCommand = require(`./commands/${command}`)
     loadCommand.run(Discord, client, message, args)
@@ -64,6 +63,18 @@ client.on('guildBanRemove', (guild, user) => {
   if (!db.data.logs.guilds) return
   require('./events/guildBanRemove.js').run(Discord, client, guild, user)
   delete require.cache[require.resolve('./events/guildBanRemove.js')]
+})
+
+client.on('messageDelete', message => {
+  if (!db.data.logs.messages) return
+  require('./events/messageDelete.js').run(Discord, client, message)
+  delete require.cache[require.resolve('./events/messageDelete.js')]
+})
+
+client.on('messageUpdate', (oldMessage, newMessage) => {
+  if (!db.data.logs.messages) return
+  require('./events/messageUpdate.js').run(Discord, client, oldMessage, newMessage)
+  delete require.cache[require.resolve('./events/messageUpdate.js')]
 })
 
 client.login(credentials.token)
