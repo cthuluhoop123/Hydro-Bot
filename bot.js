@@ -77,4 +77,10 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
   delete require.cache[require.resolve('./events/messageUpdate.js')]
 })
 
+client.on('guildMemberUpdate', (oldMember, newMember) => {
+  if (!db.data.logs.roles) return
+  require('./events/guildMemberUpdate.js').run(Discord, client, oldMember, newMember)
+  delete require.cache[require.resolve('./events/guildMemberUpdate.js')]
+})
+
 client.login(credentials.token)
