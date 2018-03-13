@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 const credentials = require('./credentials.js')
+const db = require('./data.js')
 
 const prefix = ';'
 
@@ -33,6 +34,36 @@ client.on('message', message => {
     console.log(error)
     return
   }
+})
+
+client.on('channelCreate', channel => {
+  if (!db.data.logs.guilds) return
+  require('./events/channelCreate.js').run(Discord, client, channel)
+  delete require.cache[require.resolve('./events/channelCreate.js')]
+})
+
+client.on('channelDelete', channel => {
+  if (!db.data.logs.guilds) return
+  require('./events/channelDelete.js').run(Discord, client, channel)
+  delete require.cache[require.resolve('./events/channelDelete.js')]
+})
+
+client.on('channelUpdate', (oldChannel, newChannel) => {
+  if (!db.data.logs.guilds) return
+  require('./events/channelUpdate.js').run(Discord, client, oldChannel, newChannel)
+  delete require.cache[require.resolve('./events/channelUpdate.js')]
+})
+
+client.on('guildBanAdd', (guild, user) => {
+  if (!db.data.logs.guilds) return
+  require('./events/guildBanAdd.js').run(Discord, client, guild, user)
+  delete require.cache[require.resolve('./events/guildBanAdd.js')]
+})
+
+client.on('guildBanRemove', (guild, user) => {
+  if (!db.data.logs.guilds) return
+  require('./events/guildBanRemove.js').run(Discord, client, guild, user)
+  delete require.cache[require.resolve('./events/guildBanRemove.js')]
 })
 
 client.login(credentials.token)
