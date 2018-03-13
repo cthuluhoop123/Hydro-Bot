@@ -36,49 +36,49 @@ client.on('message', message => {
 })
 
 client.on('channelCreate', channel => {
-  if (!db.data.logs.guilds) return
+  if (!db.data.logs) return
   require('./events/channelCreate.js').run(Discord, client, channel)
   delete require.cache[require.resolve('./events/channelCreate.js')]
 })
 
 client.on('channelDelete', channel => {
-  if (!db.data.logs.guilds) return
+  if (!db.data.logs) return
   require('./events/channelDelete.js').run(Discord, client, channel)
   delete require.cache[require.resolve('./events/channelDelete.js')]
 })
 
 client.on('channelUpdate', (oldChannel, newChannel) => {
-  if (!db.data.logs.guilds) return
+  if (!db.data.logs) return
   require('./events/channelUpdate.js').run(Discord, client, oldChannel, newChannel)
   delete require.cache[require.resolve('./events/channelUpdate.js')]
 })
 
 client.on('guildBanAdd', (guild, user) => {
-  if (!db.data.logs.guilds) return
+  if (!db.data.logs) return
   require('./events/guildBanAdd.js').run(Discord, client, guild, user)
   delete require.cache[require.resolve('./events/guildBanAdd.js')]
 })
 
 client.on('guildBanRemove', (guild, user) => {
-  if (!db.data.logs.guilds) return
+  if (!db.data.logs) return
   require('./events/guildBanRemove.js').run(Discord, client, guild, user)
   delete require.cache[require.resolve('./events/guildBanRemove.js')]
 })
 
 client.on('messageDelete', message => {
-  if (!db.data.logs.messages) return
+  if (!db.data.logs) return
   require('./events/messageDelete.js').run(Discord, client, message)
   delete require.cache[require.resolve('./events/messageDelete.js')]
 })
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
-  if (!db.data.logs.messages) return
+  if (!db.data.logs) return
   require('./events/messageUpdate.js').run(Discord, client, oldMessage, newMessage)
   delete require.cache[require.resolve('./events/messageUpdate.js')]
 })
 
 client.on('guildMemberUpdate', (oldMember, newMember) => {
-  if (!db.data.logs.roles) return
+  if (!db.data.logs) return
   require('./events/guildMemberUpdate.js').run(Discord, client, oldMember, newMember)
   delete require.cache[require.resolve('./events/guildMemberUpdate.js')]
 })
