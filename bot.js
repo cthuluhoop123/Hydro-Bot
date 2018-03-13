@@ -24,12 +24,13 @@ client.on('message', message => {
     args.unshift()
 
     let loadCommand = require(`./commands/${command}`)
-    loadCommand.run(client, message, args)
+    loadCommand.run(Discord, client, message, args)
 
     //deleting the require so if the command file changes, we can immediately use the new code.
     delete require.cache[require.resolve(`./commands/${command}`)]
   } catch (error) {
     //let it fail silently when command cannot be found.
+    console.log(error)
     return
   }
 })
