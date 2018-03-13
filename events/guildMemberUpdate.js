@@ -12,7 +12,7 @@ exports.run = function (Discord, client, oldMember, newMember) {
     if (newRoles.includes(role)) {
       return
     } else {
-      message = message + `**-** ${role}\n`
+      message = message + `***-*** ${role}\n`
     }
   })
 
@@ -20,7 +20,7 @@ exports.run = function (Discord, client, oldMember, newMember) {
     if (oldRoles.includes(role)) {
       return
     } else {
-      message = message + `**+** ${role}\n`
+      message = message + `***+*** ${role}\n`
     }
   })
 
