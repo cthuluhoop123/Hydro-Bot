@@ -1,7 +1,6 @@
 {
   "name": "Hydro-Bot",
   "version": "1.0.0",
-  "description": "",
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.3.2",
@@ -21,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/cthuluhoop123/Hydro-Bot/issues"
   },
-  "homepage": "https://github.com/cthuluhoop123/Hydro-Bot#readme"
+  "homepage": "https://github.com/cthuluhoop123/Hydro-Bot#readme",
+  "description": ""
 }

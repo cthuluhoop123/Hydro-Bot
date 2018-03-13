@@ -22,5 +22,6 @@ exports.run = async function (Discord, client, message, args) {
       .setFooter('Hydro-Bot')
       .setTimestamp()
     message.channel.send({ embed })
+    message.delete(5000)
   })
 }
