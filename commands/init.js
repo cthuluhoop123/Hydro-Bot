@@ -7,9 +7,9 @@ exports.run = async function (Discord, client, message, args) {
     return
   }
   try {
-    message.edit('Setting up selfbot: Creating log guild...')
+    message.edit('``Setting up selfbot: Creating log guild...``')
     let guild = await client.user.createGuild('Hydro-Logs', null, __dirname + '/../misc/logGuildIcon.jpg')
-    message.edit('Setting up selfbot: Setting up guild...')
+    message.edit('``Setting up selfbot: Setting up guild...``')
     let channels = await Promise.all([guild.createChannel('Messages'), guild.createChannel('Guilds'), guild.createChannel('Members')]) 
     db.data = {}
     db.data['logs'] = {
@@ -17,9 +17,9 @@ exports.run = async function (Discord, client, message, args) {
       guilds: channels[1].id,
       members: channels[2].id
     }
-    message.edit('Setting up selfbot: Saving data...')
+    message.edit('``Setting up selfbot: Saving data...``')
     db.saveDb()
-    message.edit('Done.')
+    message.edit('``Done.``')
     message.delete(5000)
   } catch (error) {
     message.edit(error.toString())

@@ -3,7 +3,7 @@ const fs = require('fs')
 exports.run = async function (Discord, client, message, args) {
   let helpBody = ''
   //read all the files in the commands directory
-  fs.readdir(__dirname, (err, files) => {
+  fs.readdir(__dirname, async (err, files) => {
     files.forEach(file => {
       //ignore the file itself
       if (file == 'help.js') return
@@ -21,7 +21,8 @@ exports.run = async function (Discord, client, message, args) {
       .setDescription(helpBody)
       .setFooter('Hydro-Bot')
       .setTimestamp()
-    message.channel.send({ embed })
-    message.delete(5000)
+    let embedMsg = await message.channel.send({ embed })
+    message.delete()
+    embedMsg.delete(5000)
   })
 }
