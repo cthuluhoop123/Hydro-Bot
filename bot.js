@@ -11,6 +11,7 @@ if (!db.data.logs) {
 }
 
 client.on('ready', () => {
+  client.user.setAFK(true)
   console.log('I am ready!')
 })
 
