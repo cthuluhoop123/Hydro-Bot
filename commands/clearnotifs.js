@@ -5,6 +5,8 @@ exports.run = async function (Discord, client, message, args) {
     await guild.acknowledge()
     message.edit(`\`\`Cleared Notifications for ${i} of ${guilds.length}\`\``)
   }) 
+  message.edit('``Done...``')
+  message.delete(5000)
 }
 
 exports.help = {
