@@ -10,6 +10,9 @@ exports.run = async function (Discord, client, message, args) {
     message.edit('``Setting up selfbot: Creating log guild...``')
     let guild = await client.user.createGuild('Hydro-Logs', null, __dirname + '/../misc/logGuildIcon.jpg')
     message.edit('``Setting up selfbot: Setting up guild...``')
+    await guild.channels.forEach(channel => {
+      channel.delete('Channel not used for logs.')
+    })
     let channels = await Promise.all([guild.createChannel('Messages'), guild.createChannel('Guilds'), guild.createChannel('Roles')]) 
     db.data = {}
     db.data['logs'] = {
