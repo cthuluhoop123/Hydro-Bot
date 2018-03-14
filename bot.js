@@ -6,6 +6,10 @@ const db = require('./data.js')
 
 const prefix = ';'
 
+if (!db.data.logs) {
+  console.log("Please use the init command to set up logging server.")
+}
+
 client.on('ready', () => {
   console.log('I am ready!')
 })
