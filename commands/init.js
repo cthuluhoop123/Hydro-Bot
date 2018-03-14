@@ -2,7 +2,7 @@ const db = require('../data.js')
 
 exports.run = async function (Discord, client, message, args) {  
   if (db.data.logs && args[0] != 'f') {
-    message.edit('Already setup! Please use \`initme f\` to force create a new log guild.')
+    message.edit('Already setup! Please use \`initme f\` to force create a new log guild, or replace the contents of db.json with {}')
     message.delete(5000)
     return
   }
