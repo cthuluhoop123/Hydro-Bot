@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-const credentials = require('./credentials.js')
+const credentials = require('./credentials.json')
 const db = require('./data.js')
 
 const prefix = ';'

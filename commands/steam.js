@@ -1,6 +1,6 @@
 const SteamTotp = require('steam-totp')
 
-const credentials = require('../credentials.js')
+const credentials = require('../credentials.json')
 
 exports.run = async function (Discord, client, message, args) {
   if (!credentials.sharedSecret) {
