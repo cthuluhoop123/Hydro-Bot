@@ -76,6 +76,12 @@ client.on('messageDelete', message => {
   delete require.cache[require.resolve('./events/messageDelete.js')]
 })
 
+client.on('messageDeleteBulk', messages => {
+  if (!db.data.logs) return
+  require('./events/messageDeleteBulk.js').run(Discord, client, messages)
+  delete require.cache[require.resolve('./events/messageDeleteBulk.js')]
+})
+
 client.on('messageUpdate', (oldMessage, newMessage) => {
   if (!db.data.logs) return
   require('./events/messageUpdate.js').run(Discord, client, oldMessage, newMessage)
