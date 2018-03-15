@@ -4,7 +4,8 @@
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "steam-totp": "^2.0.1"
+    "steam-totp": "^2.0.1",
+    "ytdl-core": "^0.20.2"
   },
   "devDependencies": {},
   "scripts": {
