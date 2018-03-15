@@ -1,10 +1,10 @@
 exports.run = async function (Discord, client, message, args) {
   await message.edit('``Clearing notifications...``')
   let guilds = client.guilds.array()
-  guilds.forEach(async (guild, i) => {
-    await guild.acknowledge()
-    message.edit(`\`\`Cleared Notifications for ${i} of ${guilds.length}\`\``)
-  }) 
+  for (let i = 0; i < guilds.length; i++) {
+    await guilds[i].acknowledge()
+    await message.edit(`\`\`Cleared Notifications for ${i} of ${guilds.length}\`\``)
+  }
   message.edit('``Done...``')
   message.delete(5000)
 }
