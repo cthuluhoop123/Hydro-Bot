@@ -16,6 +16,6 @@ Create another file called ``data.json`` and put this in it:
 
 Remember to save them both. 
 
-To start the bot, go into a text channel and type in ``init``. Good luck.
+To start the bot, go into a text channel and type in ``;init``. Good luck.
 
 Sterben
