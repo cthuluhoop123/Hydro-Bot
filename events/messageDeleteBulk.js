@@ -8,6 +8,7 @@ exports.run = function (Discord, client, messages) {
         .setColor(0xf44336)
         .setAuthor(`Message Bulk Deleted`, message.author.avatarURL)
         .addField('Guild', message.guild.name)
+        .addField('Channel', message.channel.name)
         .addField('Author', `${message.member.displayName}(${message.author.username}#${message.author.discriminator})`)
         .addField('Message', message.content)
         .setFooter(`Hydro-Bot`)

@@ -3,7 +3,7 @@ const db = require('../data.js')
 exports.run = function (Discord, client, channel) {
   let embed = new Discord.RichEmbed()
       .setColor(0xf44336)
-      .setAuthor(`Channel Deleted`, channel.guild.iconURL || null)
+      .setAuthor(`Channel Deleted`, channel.guild || null)
       .addField('Guild', channel.guild.name)
       .addField('Channel Name', channel.name)
       .setFooter(`Hydro-Bot`)
