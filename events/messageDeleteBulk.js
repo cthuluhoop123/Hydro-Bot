@@ -3,7 +3,7 @@ const db = require('../data.js')
 exports.run = function (Discord, client, messages) {
   let bulkDeletedMessages = messages.array()
   bulkDeletedMessages.forEach(message => {
-    if (!message.content || message.author.bot) return
+    if (!message.content || message.author.bot || !message.member) return
     let embed = new Discord.RichEmbed()
         .setColor(0xf44336)
         .setAuthor(`Message Bulk Deleted`, message.author.avatarURL)

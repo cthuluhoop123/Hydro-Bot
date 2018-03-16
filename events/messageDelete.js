@@ -1,7 +1,7 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, message) {
-  if (!message.content || message.author.bot) return
+  if (!message.content || message.author.bot || !message.member) return
   let embed = new Discord.RichEmbed()
       .setColor(0xf44336)
       .setAuthor(`Message Deleted`, message.author.avatarURL)

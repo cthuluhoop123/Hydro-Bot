@@ -1,7 +1,7 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, oldMessage, newMessage) {
-  if (oldMessage.content == newMessage.content || oldMessage.author.bot || !oldMessage.content || !newMessage.content) return
+  if (oldMessage.content == newMessage.content || oldMessage.author.bot || !oldMessage.content || !newMessage.content || !oldMessage.guild || !newMessage.guild || !oldMessage.channel || !newMessage.channel) return
   let embed = new Discord.RichEmbed()
     .setColor(0x009688)
     .setAuthor(`Message Edited`, oldMessage.author.avatarURL)
