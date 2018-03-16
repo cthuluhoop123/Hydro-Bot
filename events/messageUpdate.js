@@ -1,16 +1,16 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, oldMessage, newMessage) {
-  if (oldMessage.content == newMessage.content || oldMessage.author.bot) return
+  if (oldMessage.content == newMessage.content || oldMessage.author.bot || !oldMessage.content || !newMessage.content) return
   let embed = new Discord.RichEmbed()
-      .setColor(0x009688)
-      .setAuthor(`Message Edited`, oldMessage.author.avatarURL)
-      .addField('Guild', oldMessage.guild.name)
-      .addField('Channel', oldMessage.channel.name)
-      .addField('Author', `${oldMessage.member.displayName}(${oldMessage.author.username}#${oldMessage.author.discriminator})`)
-      .addField('Original message', oldMessage.content)
-      .addField('Updated message', newMessage.content)
-      .setFooter(`Hydro-Bot`)
-      .setTimestamp()
+    .setColor(0x009688)
+    .setAuthor(`Message Edited`, oldMessage.author.avatarURL)
+    .addField('Author', `${oldMessage.member.displayName}(${oldMessage.author.username}#${oldMessage.author.discriminator})`)
+    .addField('Guild', oldMessage.guild.name, true)
+    .addField('Channel', oldMessage.channel.name, true)
+    .addField('Original message', oldMessage.content, true)
+    .addField('Updated message', newMessage.content, true)
+    .setFooter(`Hydro-Bot`)
+    .setTimestamp()
   client.channels.get(db.data.logs.messages).send({ embed })
 }
