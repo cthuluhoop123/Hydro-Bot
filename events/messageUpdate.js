@@ -6,6 +6,7 @@ exports.run = function (Discord, client, oldMessage, newMessage) {
       .setColor(0x009688)
       .setAuthor(`Message Edited`, oldMessage.author.avatarURL)
       .addField('Guild', oldMessage.guild.name)
+      .addField('Channel', oldMessage.channel.name)
       .addField('Author', `${oldMessage.member.displayName}(${oldMessage.author.username}#${oldMessage.author.discriminator})`)
       .addField('Original message', oldMessage.content)
       .addField('Updated message', newMessage.content)
