@@ -1,6 +1,7 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, channel) {
+  if (!channel.guild || !channel) return
   let embed = new Discord.RichEmbed()
       .setColor(0x6666ff)
       .setAuthor(`Channel Created`, channel.guild.iconURL)
