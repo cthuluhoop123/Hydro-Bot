@@ -22,8 +22,8 @@ exports.run = async function (Discord, client, message, args) {
     }
     message.edit('``Setting up selfbot: Saving data...``')
     db.saveDb()
-    message.edit('``Done.``')
-    message.delete(5000)
+    message.edit('``Done. If you have an offloading bot set inside credentials.json, please invite it to the server now.``')
+    message.delete(10000)
   } catch (error) {
     message.edit(error.toString())
     message.delete(5000)

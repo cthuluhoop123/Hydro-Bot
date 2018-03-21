@@ -5,9 +5,11 @@ Create a new file called ``credentials.json`` and put this in it:
 ```
 {
   "token": "Your discord token. Compulsory.",
+  "offloadBotToken": "Your offloading bot token. Optional but strongly recommended",
   "sharedSecret": "Your steam shared secret. Optional."
 }
 ``` 
+*Note: An offload bot is a bot that sends all the logs in place of you. In case of a massive bulk delete, your account won't get suspended/banned.*
 
 Create another file called ``data.json`` and put this in it:
 ```

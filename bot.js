@@ -1,8 +1,18 @@
+const credentials = require('./credentials.json')
+const db = require('./data.js')
+
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-const credentials = require('./credentials.json')
-const db = require('./data.js')
+let offLoadBot = undefined
+
+if (credentials.offLoadBotToken) {
+  offLoadBot = new Discord.Client()
+  offLoadBot.login(credentials.offLoadBotToken)
+} else {
+  console.log("Offload Bot not set. Becareful as you may hit a rate limit with logging.")
+}
+
 
 const prefix = ';'
 
@@ -42,61 +52,96 @@ client.on('message', message => {
 
 client.on('channelCreate', channel => {
   if (!db.data.logs) return
-  require('./events/channelCreate.js').run(Discord, client, channel)
+  if (offLoadBot) {
+    require('./events/channelCreate.js').run(Discord, offLoadBot, channel)
+  } else {
+    require('./events/channelCreate.js').run(Discord, client, channel)
+  }
   delete require.cache[require.resolve('./events/channelCreate.js')]
 })
 
 client.on('channelDelete', channel => {
   if (!db.data.logs) return
-  require('./events/channelDelete.js').run(Discord, client, channel)
+  if (offLoadBot) {
+    require('./events/channelDelete.js').run(Discord, offLoadBot, channel)
+  } else {
+    require('./events/channelDelete.js').run(Discord, client, channel)
+  }
   delete require.cache[require.resolve('./events/channelDelete.js')]
 })
 
 client.on('channelUpdate', (oldChannel, newChannel) => {
   if (!db.data.logs) return
-  require('./events/channelUpdate.js').run(Discord, client, oldChannel, newChannel)
+  if (offLoadBot) {
+    require('./events/channelUpdate.js').run(Discord, offLoadBot, oldChannel, newChannel)
+  } else {
+    require('./events/channelUpdate.js').run(Discord, client, oldChannel, newChannel)
+  }
   delete require.cache[require.resolve('./events/channelUpdate.js')]
 })
 
 client.on('guildBanAdd', (guild, user) => {
   if (!db.data.logs) return
-  require('./events/guildBanAdd.js').run(Discord, client, guild, user)
+  if (offLoadBot) {
+    require('./events/guildBanAdd.js').run(Discord, offLoadBot, guild, user)
+  } else {
+    require('./events/guildBanAdd.js').run(Discord, client, guild, user)
+  }
   delete require.cache[require.resolve('./events/guildBanAdd.js')]
 })
 
 client.on('guildBanRemove', (guild, user) => {
   if (!db.data.logs) return
-  require('./events/guildBanRemove.js').run(Discord, client, guild, user)
+  if (offLoadBot) {
+    require('./events/guildBanRemove.js').run(Discord, offLoadBot, guild, user)
+  } else {
+    require('./events/guildBanRemove.js').run(Discord, client, guild, user)
+  }
   delete require.cache[require.resolve('./events/guildBanRemove.js')]
 })
 
 client.on('messageDelete', message => {
   if (!db.data.logs) return
-  require('./events/messageDelete.js').run(Discord, client, message)
+  if (offLoadBot) {
+    require('./events/messageDelete.js').run(Discord, offLoadBot, message)
+  } else {
+    require('./events/messageDelete.js').run(Discord, client, message)
+  }
   delete require.cache[require.resolve('./events/messageDelete.js')]
 })
 
 client.on('messageDeleteBulk', messages => {
   if (!db.data.logs) return
-  require('./events/messageDeleteBulk.js').run(Discord, client, messages)
+  if (offLoadBot) {
+    require('./events/messageDeleteBulk.js').run(Discord, offLoadBot, messages)
+  } else {
+    require('./events/messageDeleteBulk.js').run(Discord, client, messages)
+  }
   delete require.cache[require.resolve('./events/messageDeleteBulk.js')]
 })
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
   if (!db.data.logs) return
-  require('./events/messageUpdate.js').run(Discord, client, oldMessage, newMessage)
+  if (offLoadBot) {
+    require('./events/messageUpdate.js').run(Discord, offLoadBot, oldMessage, newMessage)
+  } else {
+    require('./events/messageUpdate.js').run(Discord, client, oldMessage, newMessage)
+  }
   delete require.cache[require.resolve('./events/messageUpdate.js')]
 })
 
 client.on('guildMemberUpdate', (oldMember, newMember) => {
   if (!db.data.logs) return
-  require('./events/guildMemberUpdate.js').run(Discord, client, oldMember, newMember)
+  if (offLoadBot) {
+    require('./events/guildMemberUpdate.js').run(Discord, offLoadBot, oldMember, newMember)
+  } else {
+    require('./events/guildMemberUpdate.js').run(Discord, client, oldMember, newMember)
+  }
   delete require.cache[require.resolve('./events/guildMemberUpdate.js')]
 })
 
 process.on('unhandledRejection', (reason, p) => {
-  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-  // application specific logging, throwing an error, or other logic here
-});
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
+})
 
 client.login(credentials.token)
