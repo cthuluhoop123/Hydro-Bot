@@ -45,7 +45,6 @@ client.on('message', message => {
     delete require.cache[require.resolve(`./commands/${command}`)]
   } catch (error) {
     //let it fail silently when command cannot be found.
-    console.log(error)
     return
   }
 })

@@ -1,7 +1,7 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, messages) {
-  let bulkDeletedMessages = messages.array()
+  let bulkDeletedMessages = messages.array().reverse()
   bulkDeletedMessages.forEach(message => {
     if (!message.content || message.author.bot || !message.member) return
     if(message.content.length > 1024) {
