@@ -23,6 +23,6 @@ exports.run = async function (Discord, client, message, args) {
       .setTimestamp()
     let embedMsg = await message.channel.send({ embed })
     message.delete()
-    embedMsg.delete(5000)
+    embedMsg.delete(20000)
   })
 }
