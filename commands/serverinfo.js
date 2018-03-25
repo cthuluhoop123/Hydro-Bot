@@ -7,6 +7,7 @@ exports.run = async function (Discord, client, message, args) {
     .addField('Channels', message.guild.channels.array().length, true)
     .addField('Members', message.guild.members.array().length, true)
     .addField('Region', message.guild.region, true)
+    .addField('Joined Date', new Date(message.guild.joinedAt).toLocaleString(), true)
     .addField('Verification Level', message.guild.verificationLevel, true)
     .addField('Other Features', message.guild.features.toString() || 'None')
     .setFooter(`Hydro-Bot`)
