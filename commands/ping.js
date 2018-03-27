@@ -1,5 +1,6 @@
 exports.run = async function (Discord, client, message, args) {
-  await message.edit('``Pong!``')
+  let d = new Date()
+  await message.edit(`\`\`Pong! ${Date.now() - message.createdTimestamp}ms\`\``)
   message.delete(5000)
 }
 
