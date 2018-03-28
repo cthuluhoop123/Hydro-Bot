@@ -4,7 +4,7 @@ const db = require('./data.js')
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-let offLoadBot = undefined
+let offLoadBot = null
 
 if (credentials.offLoadBotToken) {
   offLoadBot = new Discord.Client()
@@ -12,7 +12,6 @@ if (credentials.offLoadBotToken) {
 } else {
   console.log("Offload Bot not set. Becareful as you may hit a rate limit with logging.")
 }
-
 
 const prefix = ';'
 
@@ -23,6 +22,10 @@ if (!db.data.logs) {
 client.on('ready', () => {
   client.user.setAFK(true)
   console.log('I am ready!')
+  if (db.data.rotateAvatar) {
+    require('./commands/rotateavatar.js').rotateAvatar(client, 0)
+    delete require.cache[require.resolve('./commands/rotateavatar.js')]
+  }
 })
 
 client.on('message', message => {
