@@ -1,13 +1,19 @@
 const db = require('../data.js')
 const fs = require('fs')
 
+let rotateTimeout = null
+
 exports.run = async function (Discord, client, message, args) {
   if (db.data.rotateAvatar === undefined) db.data.rotateAvatar = true
     else db.data.rotateAvatar = !db.data.rotateAvatar
+  if (db.data.rotateAvatar) {
+    this.rotateAvatar(client, 0)
+  } else {
+    clearTimeout(rotateTimeout)
+  }
   db.saveDb()
   message.edit(`\`\`Avatar rotation is now ${db.data.rotateAvatar === true ? 'on' : 'off'}\`\``)
   message.delete(5000)
-  this.rotateAvatar(client, 0)
   delete require.cache[require.resolve('../data.js')]
 }
 
@@ -26,7 +32,7 @@ exports.rotateAvatar = function (client, i) {
       console.log("Failed avatar rotation. Most likely ratelimited. Trying again later.")
     }
   })
-  setTimeout(() => {
+  rotateTimeout = setTimeout(() => {
     self.rotateAvatar(client, i + 1)
   }, 1000*60*15)
 }
