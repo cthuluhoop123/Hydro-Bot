@@ -12,7 +12,7 @@ exports.run = async function (Discord, client, message, args) {
 }
 
 exports.help = {
-  info: 'Pings to see if selfbot is online.'
+  info: 'Rotates avatar from avatars folder.'
 }
 
 exports.rotateAvatar = function (client, i) {
@@ -20,7 +20,11 @@ exports.rotateAvatar = function (client, i) {
   fs.readdir(__dirname + '/../avatars', (err, files) => {
     if (files.length == 0) return
     if (i > files.length - 1) i = 0
-    client.user.setAvatar(__dirname + `/../avatars/${files[i]}`)
+    try {
+      client.user.setAvatar(__dirname + `/../avatars/${files[i]}`)
+    } catch (e) {
+      console.log("Failed avatar rotation. Most likely ratelimited. Trying again later.")
+    }
   })
   setTimeout(() => {
     self.rotateAvatar(client, i + 1)
