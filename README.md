@@ -9,7 +9,7 @@ Create a new file called ``credentials.json`` and put this in it:
   "sharedSecret": "Your steam shared secret. Optional."
 }
 ``` 
-*Notes: 
+Notes: 
 * An offload bot is a bot that sends all the logs in place of you. In case of a massive bulk delete, your account won't get suspended/banned.
 * Put the avatars you want to rotate in your avatar folder.*
 
