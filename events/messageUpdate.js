@@ -1,7 +1,7 @@
 const db = require('../data.js')
 
 exports.run = function (Discord, client, oldMessage, newMessage) {
-  if (oldMessage.content == newMessage.content || oldMessage.author.bot || !oldMessage.content || !newMessage.content || !oldMessage.guild || !newMessage.guild || !oldMessage.channel || !newMessage.channel || !oldMessage.member || !newMessage.member) return
+  if (oldMessage.content == newMessage.content || oldMessage.author.bot || !oldMessage.content || !newMessage.content || !oldMessage.member) return
   if (oldMessage.content.length > 1024 || newMessage.content.length > 1024) {
     try {
       let embed = new Discord.RichEmbed()
