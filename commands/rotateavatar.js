@@ -34,5 +34,5 @@ exports.rotateAvatar = function (client, i) {
   })
   rotateTimeout = setTimeout(() => {
     self.rotateAvatar(client, i + 1)
-  }, 1000*60*15)
+  }, 1000*60*45)
 }

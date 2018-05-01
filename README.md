@@ -6,7 +6,8 @@ Create a new file called ``credentials.json`` and put this in it:
 {
   "token": "Your discord token. Compulsory.",
   "offloadBotToken": "Your offloading bot token. Optional but strongly recommended",
-  "sharedSecret": "Your steam shared secret. Optional."
+  "sharedSecret": "Your steam shared secret. Optional.",
+  "steamShare": "Discord ID of people you allow to get your steam 2factor code if you share accounts."
 }
 ``` 
 Notes: 

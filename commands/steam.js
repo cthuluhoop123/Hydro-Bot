@@ -8,8 +8,13 @@ exports.run = async function (Discord, client, message, args) {
     message.delete(5000)
     return
   } else {
-    message.edit(`\`\`${SteamTotp.generateAuthCode(credentials.sharedSecret)}\`\``)
-    message.delete(5000)
+    if (message.author != client.user) {
+      message.channel.send(`\`\`${SteamTotp.generateAuthCode(credentials.sharedSecret)}\`\``)
+      message.delete(5000)
+    } else {
+      message.edit(`\`\`${SteamTotp.generateAuthCode(credentials.sharedSecret)}\`\``)
+      message.delete(5000)
+    }
   }
 }
 

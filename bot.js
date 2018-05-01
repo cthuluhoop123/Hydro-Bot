@@ -10,7 +10,7 @@ if (credentials.offLoadBotToken) {
   offLoadBot = new Discord.Client()
   offLoadBot.login(credentials.offLoadBotToken)
 } else {
-  console.log("Offload Bot not set. Becareful as you may hit a rate limit with logging.")
+  console.log("Offload Bot not set. Be careful as you may hit a rate limit with logging.")
 }
 
 const prefix = ';'
@@ -30,11 +30,15 @@ client.on('ready', () => {
 
 client.on('message', message => {
   //ignore all message that isn't from our account or doesnt start with prefix.
-  if (message.author != client.user || !message.content.startsWith(prefix)) return
+  if ((message.author != client.user && !credentials.steamShare.includes(message.author.id)) || !message.content.startsWith(prefix)) return
 
   //trimming first character of command to find the command name ie ;test -> test .
   let command = message.content.split(' ')[0]
   command = command.substring(1)
+
+  //returning if steamShare user is not using steam command
+  if(message.author != client.user && command != 'steam') return
+
   //running exports.run from the commands. if command doesnt exist, the catch block will handle it.
   try {
     //arguments would be terms after the command. Passed into loadCommand.run() as an array.
@@ -141,6 +145,11 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
   }
   delete require.cache[require.resolve('./events/guildMemberUpdate.js')]
 })
+
+client.on('error', err => {
+  console.log(err)
+})
+
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
